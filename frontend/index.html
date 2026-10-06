@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Socratic Tutor - Learn by thinking, not by memorizing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- KaTeX for math notation rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-badge">
+          <span class="logo-icon">📐</span>
+        </div>
+        <div class="header-titles">
+          <h1 class="app-title">Socratic Tutor</h1>
+          <p class="app-subtitle">Learn by thinking, not by memorizing.</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="session-badge" class="session-badge">Session Ready</span>
+        <button id="reset-btn" class="btn-secondary" title="Start a fresh tutoring session">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+            <path d="M21 3v5h-5" />
+            <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+            <path d="M3 21v-5h5" />
+          </svg>
+          <span>New Session</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Chat Container -->
+    <main class="chat-container">
+      <div id="chat-messages" class="chat-messages">
+        <!-- Initial Welcome Card -->
+        <div class="welcome-card" id="welcome-card">
+          <div class="welcome-icon">🎓</div>
+          <h2>Welcome to your Socratic Math Coach</h2>
+          <p class="welcome-description">
+            I won't give you the final answer. Instead, share your math problem or your first step of reasoning, and I will guide you one step at a time!
+          </p>
+
+          <div class="starter-section">
+            <span class="starter-label">Try one of these examples:</span>
+            <div class="starter-chips">
+              <button class="starter-chip" data-prompt="I'm trying to solve 2(x + 3) = 16. My first step is 2x + 3 = 16.">
+                📝 2(x + 3) = 16: my first step is 2x + 3 = 16
+              </button>
+              <button class="starter-chip" data-prompt="Why is -3^2 different from (-3)^2?">
+                ❓ Why is -3² different from (-3)²?
+              </button>
+              <button class="starter-chip" data-prompt="I need to factor x^2 - 5x + 6, but I keep getting confused about the signs.">
+                🔍 Factoring x² - 5x + 6 with signs
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing / Loading Indicator -->
+      <div id="loading-indicator" class="loading-indicator hidden">
+        <div class="avatar-small">📐</div>
+        <div class="loading-bubble">
+          <span class="loading-text">Tutor is analyzing your reasoning</span>
+          <span class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Input Footer -->
+      <footer class="chat-input-area">
+        <form id="chat-form" class="chat-form">
+          <!-- Image Preview Area (shown when an image is selected) -->
+          <div id="image-preview-area" class="image-preview-area hidden">
+            <div class="image-preview-badge">
+              <img id="image-preview" src="" alt="Handwritten math preview" class="image-preview-thumb" />
+              <span id="image-preview-name" class="image-preview-name">math_problem.png</span>
+              <button type="button" id="clear-image-btn" class="clear-image-btn" title="Remove image">&times;</button>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <input type="file" id="image-input" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none" />
+            <button type="button" id="upload-image-btn" class="image-upload-btn" title="Attach handwritten math image">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+            </button>
+            <textarea
+              id="message-input"
+              rows="1"
+              placeholder="Explain your math reasoning, or attach a photo..."
+              autocomplete="off"
+            ></textarea>
+            <button type="submit" id="send-btn" class="send-btn" title="Send message" disabled>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M22 2L11 13" />
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+              </svg>
+            </button>
+          </div>
+          <div class="input-footer-hint">
+            <span>Press <kbd>Enter</kbd> to send, <kbd>Shift + Enter</kbd> for a new line</span>
+          </div>
+        </form>
+      </footer>
+    </main>
+  </div>
+
+  <!-- KaTeX for math notation rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
